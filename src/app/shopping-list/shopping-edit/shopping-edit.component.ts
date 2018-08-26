@@ -2,9 +2,7 @@ import {
   Component,
   OnInit,
   ElementRef,
-  ViewChild,
-  EventEmitter,
-  Output
+  ViewChild
 } from '@angular/core';
 
 import { Ingredient } from '../../shared/ingredient.model';
@@ -30,5 +28,4 @@ export class ShoppingEditComponent implements OnInit {
     const newIngredient = new Ingredient(ingName, ingAmount);
     this.shoppingListService.addIngredient(newIngredient);
   }
-
 }
