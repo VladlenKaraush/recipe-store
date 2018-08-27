@@ -9,6 +9,7 @@ export class RecipeService{
 
   private recipes: Recipe[] = [
     new Recipe(
+      0,
       'A Test Recipe',
       'This is simply a test',
       'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
@@ -17,6 +18,7 @@ export class RecipeService{
         new Ingredient('water',1)
       ]),
     new Recipe(
+      1,
       'Another Test Recipe',
       'This is simply a test',
       'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg',
@@ -29,5 +31,10 @@ export class RecipeService{
   getRecipes(){
     return this.recipes.slice();
   }
+
+  getRecipeById(id: number){
+    return this.recipes.find(el => el.id == id);
+  }
+
 
 }
