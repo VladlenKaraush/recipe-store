@@ -15,12 +15,15 @@ import { DropdownDirective } from './shared/dropdown.directive';
 import {ShoppingListService} from "./shopping-list/shoppingListService";
 import {RouterModule, Routes} from "@angular/router";
 import { DefaultRecipeComponent } from './recipes/default-recipe/default-recipe.component';
+import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'recipes', pathMatch: 'full'},
   {path: 'recipes', component: RecipesComponent, children: [
       {path: '', component: DefaultRecipeComponent},
-      {path: ':id', component: RecipeDetailComponent}
+      {path: 'new', component: RecipeEditComponent},
+      {path: ':id', component: RecipeDetailComponent},
+      {path: ':id/edit', component: RecipeEditComponent},
     ]},
   {path: 'shopping-list', component: ShoppingListComponent}
 ];
@@ -36,7 +39,8 @@ const appRoutes: Routes = [
     ShoppingListComponent,
     ShoppingEditComponent,
     DropdownDirective,
-    DefaultRecipeComponent
+    DefaultRecipeComponent,
+    RecipeEditComponent
 
   ],
   imports: [
