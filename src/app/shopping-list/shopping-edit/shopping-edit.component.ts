@@ -59,5 +59,10 @@ export class ShoppingEditComponent implements OnInit, OnDestroy {
     this.subscription.unsubscribe();
   }
 
+  onDelete(){
+    this.shoppingListService.deleteIngredientByIndex(this.editIndex);
+    this.clear();
+  }
+
 
 }

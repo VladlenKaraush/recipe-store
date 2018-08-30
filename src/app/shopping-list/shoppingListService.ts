@@ -33,5 +33,10 @@ export class ShoppingListService {
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
+  deleteIngredientByIndex(index: number){
+    var ingArr = this.ingredients;
+    this.ingredients = [].concat(ingArr.slice(0, index),ingArr.slice(index + 1, ingArr.length));
+    this.ingredientsChanged.next(this.ingredients.slice());
+  }
 
 }
