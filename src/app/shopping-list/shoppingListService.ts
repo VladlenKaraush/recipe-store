@@ -34,8 +34,7 @@ export class ShoppingListService {
   }
 
   deleteIngredientByIndex(index: number){
-    var ingArr = this.ingredients;
-    this.ingredients = [].concat(ingArr.slice(0, index),ingArr.slice(index + 1, ingArr.length));
+    this.ingredients = this.ingredients.splice(index);
     this.ingredientsChanged.next(this.ingredients.slice());
   }
 
