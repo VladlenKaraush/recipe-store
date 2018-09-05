@@ -4,6 +4,8 @@ import {Recipe} from '../recipe.model';
 import {RecipeService} from "../recipeService";
 import {Subscription} from "rxjs";
 
+
+
 @Component({
   selector: 'app-recipe-list',
   templateUrl: './recipe-list.component.html',
@@ -20,10 +22,9 @@ export class RecipeListComponent implements OnInit, OnDestroy {
     this.recipes = this.recipeService.getRecipes();
     this.subscription = this.recipeService.recipesChanged.subscribe(
       (recipes: Recipe[]) => {
-        debugger;
         this.recipes = recipes;
       }
-    )
+    );
   }
 
   ngOnDestroy() {

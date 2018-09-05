@@ -2,6 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { HttpModule } from '@angular/http';
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+import {AngularFireDatabaseModule} from "angularfire2/database";
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -17,6 +20,12 @@ import {RouterModule, Routes} from "@angular/router";
 import { DefaultRecipeComponent } from './recipes/default-recipe/default-recipe.component';
 import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeService} from "./recipes/recipeService";
+import {environment} from "../environments/environment";
+import {DataStorageService} from "./shared/data-storage.service";
+import { SignupComponent } from './auth/signup/signup.component';
+import { SigninComponent } from './auth/signin/signin.component';
+
+
 
 const appRoutes: Routes = [
   {path: '', redirectTo: 'recipes', pathMatch: 'full'},
@@ -41,7 +50,9 @@ const appRoutes: Routes = [
     ShoppingEditComponent,
     DropdownDirective,
     DefaultRecipeComponent,
-    RecipeEditComponent
+    RecipeEditComponent,
+    SignupComponent,
+    SigninComponent,
 
   ],
   imports: [
@@ -50,8 +61,11 @@ const appRoutes: Routes = [
     HttpModule,
     ReactiveFormsModule,
     RouterModule.forRoot(appRoutes),
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
+    AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [ShoppingListService, RecipeService],
+  providers: [ShoppingListService, RecipeService, DataStorageService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
