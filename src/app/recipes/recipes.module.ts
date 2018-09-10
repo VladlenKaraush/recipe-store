@@ -8,6 +8,7 @@ import {DefaultRecipeComponent} from "./default-recipe/default-recipe.component"
 import {DropdownDirective} from "../shared/dropdown.directive";
 import {ReactiveFormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {RecipeRoutesModule} from "./recipe-routes.module";
 
 @NgModule({
   declarations:[
@@ -22,6 +23,7 @@ import {CommonModule} from "@angular/common";
   imports:[
     CommonModule,
     ReactiveFormsModule,
+    RecipeRoutesModule,
   ]
 })
 export class RecipesModule{
