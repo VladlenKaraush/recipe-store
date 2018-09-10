@@ -17,29 +17,27 @@ import {SignupComponent} from './auth/signup/signup.component';
 import {SigninComponent} from './auth/signin/signin.component';
 import {AuthService} from "./auth/auth.service";
 import {AuthGuard} from "./auth/auth-guard.service";
-import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
-import {ShoppingEditComponent} from "./shopping-list/shopping-edit/shopping-edit.component";
 import {AppRoutesModule} from "./app-routes.module";
 import {RecipesModule} from "./recipes/recipes.module";
+import {SharedModule} from "./shared/shared.module";
+import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 
 
 @NgModule({
   declarations: [
     AppComponent,
     HeaderComponent,
-    ShoppingListComponent,
-    ShoppingEditComponent,
     SignupComponent,
     SigninComponent,
-
   ],
   imports: [
     BrowserModule,
-    FormsModule,
     HttpModule,
     ReactiveFormsModule,
     AppRoutesModule,
     RecipesModule,
+    ShoppingListModule,
+    SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
