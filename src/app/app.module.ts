@@ -18,9 +18,9 @@ import {SigninComponent} from './auth/signin/signin.component';
 import {AuthService} from "./auth/auth.service";
 import {AuthGuard} from "./auth/auth-guard.service";
 import {AppRoutesModule} from "./app-routes.module";
-import {RecipesModule} from "./recipes/recipes.module";
 import {SharedModule} from "./shared/shared.module";
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
+import { HomeComponent } from './home/home.component';
 
 
 @NgModule({
@@ -29,13 +29,13 @@ import {ShoppingListModule} from "./shopping-list/shopping-list.module";
     HeaderComponent,
     SignupComponent,
     SigninComponent,
+    HomeComponent,
   ],
   imports: [
     BrowserModule,
     HttpModule,
     ReactiveFormsModule,
     AppRoutesModule,
-    RecipesModule,
     ShoppingListModule,
     SharedModule,
     AngularFireModule.initializeApp(environment.firebase),
