@@ -9,22 +9,23 @@ import {AngularFireDatabaseModule} from "angularfire2/database";
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { RecipesComponent } from './recipes/recipes.component';
-import { RecipeListComponent } from './recipes/recipe-list/recipe-list.component';
 import { RecipeDetailComponent } from './recipes/recipe-detail/recipe-detail.component';
-import { RecipeItemComponent } from './recipes/recipe-list/recipe-item/recipe-item.component';
-import { ShoppingListComponent } from './shopping-list/shopping-list.component';
-import { ShoppingEditComponent } from './shopping-list/shopping-edit/shopping-edit.component';
-import { DropdownDirective } from './shared/dropdown.directive';
+
+
 import {ShoppingListService} from "./shopping-list/shoppingListService";
 import {RouterModule, Routes} from "@angular/router";
-import { DefaultRecipeComponent } from './recipes/default-recipe/default-recipe.component';
-import { RecipeEditComponent } from './recipes/recipe-edit/recipe-edit.component';
 import {RecipeService} from "./recipes/recipeService";
 import {environment} from "../environments/environment";
 import {DataStorageService} from "./shared/data-storage.service";
 import { SignupComponent } from './auth/signup/signup.component';
 import { SigninComponent } from './auth/signin/signin.component';
 import {AuthService} from "./auth/auth.service";
+import {AuthGuard} from "./auth/auth-guard.service";
+import {DefaultRecipeComponent} from "./recipes/default-recipe/default-recipe.component";
+import {RecipeEditComponent} from "./recipes/recipe-edit/recipe-edit.component";
+import {ShoppingListComponent} from "./shopping-list/shopping-list.component";
+import {ShoppingEditComponent} from "./shopping-list/shopping-edit/shopping-edit.component";
+import {DropdownDirective} from "./shared/dropdown.directive";
 
 
 
@@ -32,9 +33,9 @@ const appRoutes: Routes = [
   {path: '', redirectTo: 'recipes', pathMatch: 'full'},
   {path: 'recipes', component: RecipesComponent, children: [
       {path: '', component: DefaultRecipeComponent},
-      {path: 'new', component: RecipeEditComponent},
+      {path: 'new', component: RecipeEditComponent, canActivate: [AuthGuard]},
       {path: ':id', component: RecipeDetailComponent},
-      {path: ':id/edit', component: RecipeEditComponent},
+      {path: ':id/edit', component: RecipeEditComponent, canActivate: [AuthGuard]},
     ]},
   {path: 'shopping-list', component: ShoppingListComponent},
   {path: 'signup', component: SignupComponent},
@@ -45,15 +46,8 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     HeaderComponent,
-    RecipesComponent,
-    RecipeListComponent,
-    RecipeDetailComponent,
-    RecipeItemComponent,
     ShoppingListComponent,
     ShoppingEditComponent,
-    DropdownDirective,
-    DefaultRecipeComponent,
-    RecipeEditComponent,
     SignupComponent,
     SigninComponent,
 
@@ -62,13 +56,13 @@ const appRoutes: Routes = [
     BrowserModule,
     FormsModule,
     HttpModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule, 
     RouterModule.forRoot(appRoutes),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireDatabaseModule, // imports firebase/firestore, only needed for database features
     AngularFireAuthModule, // imports firebase/auth, only needed for auth features
   ],
-  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService],
+  providers: [ShoppingListService, RecipeService, DataStorageService, AuthService, AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
