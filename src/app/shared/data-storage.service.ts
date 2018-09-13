@@ -3,7 +3,7 @@ import {RecipeService} from "../recipes/recipeService";
 import {Recipe} from "../recipes/recipe.model";
 import 'rxjs/Rx';
 import {AuthService} from "../auth/auth.service";
-import {HttpClient} from "@angular/common/http";
+import {HttpClient, HttpParams} from "@angular/common/http";
 
 @Injectable()
 export class DataStorageService {
@@ -13,16 +13,19 @@ export class DataStorageService {
   }
 
   private URL = 'https://angular-back.firebaseio.com/';
+  private fileName = 'recipes.json';
+  private params = new HttpParams().set('auth', this.auth.getToken());
 
   storeRecipes() {
-    const token = this.auth.getToken();
-      return this.http.put(this.URL + 'recipes.json?auth=' + token, this.recipeService.getRecipes())
+      return this.http.put(this.URL + this.fileName, this.recipeService.getRecipes(),{
+        params: this.params
+      })
   }
 
   fetchRecipes() {
-    const token = this.auth.getToken();
-    debugger;
-    return this.http.get<Recipe[]>(this.URL + 'recipes.json?auth=' + token)
+    return this.http.get<Recipe[]>(this.URL + this.fileName,{
+      params: this.params
+    })
       .map(
         (recipes) => {
           for(let recipe of recipes){
