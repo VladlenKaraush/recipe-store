@@ -14,22 +14,24 @@ export class DataStorageService {
 
   private URL = 'https://angular-back.firebaseio.com/';
   private fileName = 'recipes.json';
-  private params = new HttpParams().set('auth', this.auth.getToken());
+
 
   storeRecipes() {
-      return this.http.put(this.URL + this.fileName, this.recipeService.getRecipes(),{
-        params: this.params
-      })
+    const params = new HttpParams().set('auth', this.auth.getToken());
+    return this.http.put(this.URL + this.fileName, this.recipeService.getRecipes(), {
+      params: params
+    })
   }
 
   fetchRecipes() {
-    return this.http.get<Recipe[]>(this.URL + this.fileName,{
-      params: this.params
+    const params = new HttpParams().set('auth', this.auth.getToken());
+    return this.http.get<Recipe[]>(this.URL + this.fileName, {
+      params: params
     })
       .map(
         (recipes) => {
-          for(let recipe of recipes){
-            if(!recipe['ingredients']){
+          for (let recipe of recipes) {
+            if (!recipe['ingredients']) {
               recipe.ingredients = [];
             }
           }
@@ -37,9 +39,9 @@ export class DataStorageService {
         }
       )
       .subscribe(
-      (recipes: Recipe[]) =>{
-        this.recipeService.setRecipes(recipes);
-      }
-    )
+        (recipes: Recipe[]) => {
+          this.recipeService.setRecipes(recipes);
+        }
+      )
   }
 }
