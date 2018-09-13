@@ -1,7 +1,6 @@
 import {BrowserModule} from '@angular/platform-browser';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
-import {HttpModule} from '@angular/http';
 
 import {AppComponent} from './app.component';
 
@@ -11,6 +10,7 @@ import {AppRoutesModule} from "./app-routes.module";
 import {SharedModule} from "./shared/shared.module";
 import {ShoppingListModule} from "./shopping-list/shopping-list.module";
 import {CoreModule} from "./core/core.module";
+import {HttpClientModule} from "@angular/common/http";
 
 
 @NgModule({
@@ -21,7 +21,7 @@ import {CoreModule} from "./core/core.module";
   ],
   imports: [
     BrowserModule,
-    HttpModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AppRoutesModule,
     ShoppingListModule,
