@@ -2,9 +2,9 @@
 Сервис для создания и просмотров рецептов
 
 ## Технологии
-  * Angular
+  * Angular 5
   * Firebase
-  * Bootstrap
+  * Bootstrap 3
 
 
 ## Возможности:
