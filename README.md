@@ -33,8 +33,9 @@
 ![](img/sExdFSTmrK4.jpg)
 
 Сохранение и извлечение рецептов на firebase:
-![](img/-RPoM4TzBHA.jpg)
-![](img/iAY5Iylfo6c.jpg) 
+
+![](img/-RPoM4TzBHA.jpg) ![](img/iAY5Iylfo6c.jpg)
+ 
 
 Todo:
 * увеличивать ингридиенты пропорционально порциям
