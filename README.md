@@ -24,7 +24,7 @@
 На всех формах стоят адекватные валидаторы
 ## Скриншоты
 Просмотр рецептов:
-![](img/sNT_-aVkMMg.jpg | width=300)
+![](img/sNT_-aVkMMg.jpg){:height="300px" width="300px"}
 
 Добавление нового:
 ![](img/RWDHXeX7nqQ.jpg)
